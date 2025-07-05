@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over Gym - Flappy Push-Up Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="title">Game Over Gym</h1>
+            <p class="subtitle">Turn Your Laziness Into Fitness! 💪</p>
+        </header>
+
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-value" id="currentRepsDisplay">0</div>
+                <div class="stat-label">Current Reps</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="targetRepsDisplay">0</div>
+                <div class="stat-label">Target Reps</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="gameTimer">0:00</div>
+                <div class="stat-label">Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalPointsStats">0</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="workoutStreakDisplay">0</div>
+                <div class="stat-label">Streak</div>
+            </div>
+        </div>
+
+        <div class="exercise-instructions" id="exerciseInstructions">
+            <p id="instructionText">Select an exercise to begin your workout</p>
+        </div>
+
+        <div class="game-wrapper">
+            <div class="webcam-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="pose-overlay"></canvas>
+                <div class="detection-box" id="detectionBox"></div>
+            </div>
+
+            <div class="game-container">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-overlay" id="gameOverlay">
+                    <div class="start-screen" id="startScreen">
+                        <h2>Game Over Gym 💪</h2>
+                        <div class="exercise-selection">
+                            <h3>Choose Your Exercise</h3>
+                            <div class="exercise-grid" id="exerciseGrid">
+                                <!-- Exercise options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="difficulty-selection">
+                            <h3>Difficulty Level</h3>
+                            <div class="difficulty-buttons">
+                                <button class="difficulty-btn" data-level="beginner">🟢 Beginner</button>
+                                <button class="difficulty-btn active" data-level="intermediate">🟡 Intermediate</button>
+                                <button class="difficulty-btn" data-level="advanced">🔴 Advanced</button>
+                            </div>
+                        </div>
+                        <div class="workout-info" id="workoutInfo">
+                            <p><span id="selectedExercise">Push-ups</span> - <span id="selectedReps">10</span> reps</p>
+                            <p>Points: <span id="selectedPoints">25</span></p>
+                        </div>
+                        <button class="start-btn" onclick="startWorkout()">Start Workout</button>
+                    </div>
+                    <div class="game-over-screen" id="gameOverScreen" style="display: none;">
+                        <h2>Workout Complete! 🎉</h2>
+                        <div class="workout-results">
+                            <p><span id="completedExercise">Push-ups</span></p>
+                            <p>Reps: <span id="finalReps">0</span></p>
+                            <p>Points Earned: <span id="earnedPoints">0</span></p>
+                            <p>Total Points: <span id="totalPointsDisplay">0</span></p>
+                            <p>Workout Time: <span id="workoutTime">0</span>s</p>
+                        </div>
+                        <div class="achievement-display" id="achievementDisplay" style="display: none;">
+                            <p>🏆 Achievement Unlocked!</p>
+                            <p id="achievementText"></p>
+                        </div>
+                        <button class="start-btn" onclick="restartGame()">Next Workout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="game.js"></script>
+    <!-- <script src="test.js"></script> -->
+</body>
+</html>
